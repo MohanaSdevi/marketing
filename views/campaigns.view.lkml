@@ -13,16 +13,12 @@ view: campaigns {
     type: number
     sql: ${TABLE}.campaign_id ;;
   }
-    # Here's what a typical dimension looks like in LookML.
-    # A dimension is a groupable field that can be used to filter query results.
-    # This dimension will be called "Budget" in Explore.
 
-  dimension: budget {
-    type: number
-    sql: ${TABLE}.budget ;;
-  }
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
+  # dimension: budget {
+  #   type: number
+  #   sql: ${TABLE}.budget ;;
+  # }
+
 
   dimension_group: end {
     type: time
@@ -47,6 +43,13 @@ view: campaigns {
     type: string
     sql: ${TABLE}.type ;;
   }
+
+  measure: budget {
+    type: sum
+    sql: ${TABLE}.budget ;;
+    value_format: "#,##0"
+  }
+
   measure: count {
     type: count
     drill_fields: [campaign_id, name, interactions.count, social_media_engagement.count, social_media_engagement_1.count]

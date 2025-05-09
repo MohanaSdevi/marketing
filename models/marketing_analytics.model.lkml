@@ -13,19 +13,6 @@ explore: products {}
 
 explore: campaigns {}
 
-explore: nestedbigquery_1 {
-    join: nestedbigquery_1__col1 {
-      view_label: "Nestedbigquery 1: Col1"
-      sql: LEFT JOIN UNNEST(${nestedbigquery_1.col1}) as nestedbigquery_1__col1 ;;
-      relationship: one_to_many
-    }
-    join: nestedbigquery_1__col1__item_name {
-      view_label: "Nestedbigquery 1: Col1 Item Name"
-      sql: LEFT JOIN UNNEST(${nestedbigquery_1__col1.item_name}) as nestedbigquery_1__col1__item_name ;;
-      relationship: one_to_many
-    }
-}
-
 explore: customers {}
 
 explore: interactions {
@@ -42,23 +29,6 @@ explore: interactions {
   }
 }
 
-explore: connection_reg_r3 {}
-
-explore: nestedbigquery {
-    join: nestedbigquery__item_name__item_name {
-      view_label: "Nestedbigquery: Item Name Item Name"
-      sql: LEFT JOIN UNNEST(${nestedbigquery.item_name__item_name}) as nestedbigquery__item_name__item_name ;;
-      relationship: one_to_many
-    }
-}
-
-explore: nestedbigquery_2 {
-    join: nestedbigquery_2__item_name__item_name {
-      view_label: "Nestedbigquery 2: Item Name Item Name"
-      sql: LEFT JOIN UNNEST(${nestedbigquery_2.item_name__item_name}) as nestedbigquery_2__item_name__item_name ;;
-      relationship: one_to_many
-    }
-}
 
 explore: social_media_engagement {
   join: campaigns {
@@ -97,5 +67,3 @@ explore: transactions {
     relationship: many_to_one
   }
 }
-
-explore: stores_copy {}
