@@ -23,8 +23,8 @@ view: social_media_engagement {
     sql: ${TABLE}.campaign_id ;;
   }
 
-  dimension: comments {
-    type: number
+  measure: comments {
+    type: sum
     sql: ${TABLE}.comments ;;
   }
   # Dates and timestamps can be represented in Looker using a dimension group of type: time.
@@ -36,8 +36,8 @@ view: social_media_engagement {
     sql: ${TABLE}.engagement_date ;;
   }
 
-  dimension: likes {
-    type: number
+  measure: likes {
+    type: sum
     sql: ${TABLE}.likes ;;
   }
 
@@ -46,8 +46,8 @@ view: social_media_engagement {
     sql: ${TABLE}.post_id ;;
   }
 
-  dimension: shares {
-    type: number
+  measure: shares {
+    type: sum
     sql: ${TABLE}.shares ;;
   }
   measure: count {

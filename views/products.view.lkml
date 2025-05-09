@@ -32,10 +32,17 @@ view: products {
     sql: ${TABLE}.platform ;;
   }
 
-  dimension: price {
-    type: number
+  # dimension: price {
+  #   type: number
+  #   sql: ${TABLE}.price ;;
+  # }
+
+  measure: price {
+    type: sum
     sql: ${TABLE}.price ;;
+    value_format: "#,##0"
   }
+
   measure: count {
     type: count
     drill_fields: [product_id, name, transactions.count]
