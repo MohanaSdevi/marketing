@@ -8,13 +8,6 @@ datagroup: marketing_analytics_default_datagroup {
 
 persist_with: marketing_analytics_default_datagroup
 
-
-explore: products {}
-
-explore: campaigns {}
-
-explore: customers {}
-
 explore: interactions {
   join: customers {
     type: left_outer
@@ -29,7 +22,6 @@ explore: interactions {
   }
 }
 
-
 explore: social_media_engagement {
   join: campaigns {
     type: left_outer
@@ -38,7 +30,6 @@ explore: social_media_engagement {
   }
 }
 
-explore: stores {}
 
 explore: transactions {
   join: stores {
