@@ -38,14 +38,6 @@ explore: social_media_engagement {
   }
 }
 
-explore: social_media_engagement_1 {
-  join: campaigns {
-    type: left_outer
-    sql_on: ${social_media_engagement_1.campaign_id} = ${campaigns.campaign_id} ;;
-    relationship: many_to_one
-  }
-}
-
 explore: stores {}
 
 explore: transactions {
