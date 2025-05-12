@@ -8,45 +8,73 @@ datagroup: marketing_analytics_default_datagroup {
 
 persist_with: marketing_analytics_default_datagroup
 
-explore: interactions {
-  label: "Interactions Customers Campaigns"
-  join: customers {
-    type: left_outer
-    sql_on: ${interactions.customer_id} = ${customers.customer_id} ;;
-    relationship: many_to_one
-  }
-  join: campaigns {
-    type: left_outer
-    sql_on: ${interactions.campaign_id} = ${campaigns.campaign_id} ;;
-    relationship: many_to_one
-  }
-}
+# explore: interactions {
+#   label: "Interactions Customers Campaigns"
+#   join: customers {
+#     type: left_outer
+#     sql_on: ${interactions.customer_id} = ${customers.customer_id} ;;
+#     relationship: many_to_one
+#   }
+#   join: campaigns {
+#     type: left_outer
+#     sql_on: ${interactions.campaign_id} = ${campaigns.campaign_id} ;;
+#     relationship: many_to_one
+#   }
+# }
 
-explore: social_media_engagement {
-  label: "SocialMediaEngagement Campaigns"
-  join: campaigns {
-    type: left_outer
-    sql_on: ${social_media_engagement.campaign_id} = ${campaigns.campaign_id} ;;
-    relationship: many_to_one
+# explore: social_media_engagement {
+#   label: "SocialMediaEngagement Campaigns"
+#   join: campaigns {
+#     type: left_outer
+#     sql_on: ${social_media_engagement.campaign_id} = ${campaigns.campaign_id} ;;
+#     relationship: many_to_one
+#   }
+# }
+
+
+# explore: transactions {
+#   label: "Transactions Stores Products Customers"
+#   join: stores {
+#     type: left_outer
+#     sql_on: ${transactions.store_id} = ${stores.store_id} ;;
+#     relationship: many_to_one
+#   }
+#   join: products {
+#     type: left_outer
+#     sql_on: ${transactions.product_id} = ${products.product_id} ;;
+#     relationship: many_to_one
+#   }
+#   join: customers {
+#     type: left_outer
+#     sql_on: ${transactions.customer_id} = ${customers.customer_id} ;;
+#     relationship: many_to_one
+#   }
+# }
+
+explore: customers {
+  label: "Marketing Analytics"
+  join: transactions {
+    sql_on: ${customers.customer_id} = ${transactions.customer_id} ;;
+    relationship: one_to_many
   }
-}
-
-
-explore: transactions {
-  label: "Transactions Stores Products Customers"
-  join: stores {
-    type: left_outer
-    sql_on: ${transactions.store_id} = ${stores.store_id} ;;
-    relationship: many_to_one
+  join: interactions {
+    sql_on: ${customers.customer_id} = ${interactions.customer_id} ;;
+    relationship: one_to_many
   }
   join: products {
-    type: left_outer
     sql_on: ${transactions.product_id} = ${products.product_id} ;;
     relationship: many_to_one
   }
-  join: customers {
-    type: left_outer
-    sql_on: ${transactions.customer_id} = ${customers.customer_id} ;;
+  join: stores {
+    sql_on: ${transactions.store_id} = ${stores.store_id} ;;
     relationship: many_to_one
+  }
+  join: campaigns {
+    sql_on: ${interactions.campaign_id} = ${campaigns.campaign_id} ;;
+    relationship: one_to_many
+  }
+  join: social_media_engagement {
+    sql_on: ${campaigns.campaign_id} = ${social_media_engagement.campaign_id} ;;
+    relationship: one_to_many
   }
 }
