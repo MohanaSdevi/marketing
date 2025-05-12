@@ -19,8 +19,12 @@ view: stores {
 
   dimension: location {
     type: string
-    map_layer_name: us_states
     sql: ${TABLE}.location ;;
+  }
+  dimension: state {
+    type: string
+    map_layer_name: us_states
+    sql: TRIM(SUBSTR(${location}, STRPOS(${location}, ',') + 1)) ;;
   }
 
   dimension: manager {
