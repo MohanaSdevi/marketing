@@ -64,6 +64,17 @@ view: transactions {
     drill_fields: [detail*]
   }
 
+  measure: zero {
+    type: number
+    sql: MAX(0);;
+  }
+
+  measure: price2 {
+    type: sum
+    sql: ${TABLE}.price ;;
+    value_format: "#,##0"
+  }
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
